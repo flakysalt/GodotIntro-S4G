@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://borc5uon4dfr6"]
+
+[ext_resource type="Texture2D" uid="uid://cg3dd5arsjekm" path="res://Slotmachine/Assets/wheel.png" id="1_33osh"]
+[ext_resource type="Script" path="res://Slotmachine/Scripts/wheel.gd" id="2_6ud3m"]
+[ext_resource type="Texture2D" uid="uid://dbiprilh5q1or" path="res://Slotmachine/Assets/wheel_spin.png" id="3_6wtue"]
+
+[sub_resource type="Animation" id="Animation_g52m2"]
+resource_name = "start_spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.73208, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(0, 128, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_hlgo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fkj27"]
+resource_name = "spin_loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(0, 128, 32, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g062d"]
+resource_name = "spin_stop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.196146, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(0, 128, 32, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nnq4x"]
+_data = {
+"RESET": SubResource("Animation_hlgo6"),
+"spin_loop": SubResource("Animation_fkj27"),
+"spin_stop": SubResource("Animation_g062d"),
+"start_spin": SubResource("Animation_g52m2")
+}
+
+[node name="Wheel" type="Sprite2D"]
+texture = ExtResource("1_33osh")
+vframes = 4
+frame = 3
+script = ExtResource("2_6ud3m")
+
+[node name="BlurredIcons" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_6wtue")
+region_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BlurredIcons")
+libraries = {
+"": SubResource("AnimationLibrary_nnq4x")
+}
+next/start_spin = &"spin_loop"

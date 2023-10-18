@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2pnd1hutxjrv"]
+
+[ext_resource type="Texture2D" uid="uid://b2266c3dabj4d" path="res://Slotmachine/Assets/background.png" id="1_tey2q"]
+[ext_resource type="PackedScene" uid="uid://c2lms0i88p3ts" path="res://Slotmachine/Scenes/WheelCollection.tscn" id="2_8m22j"]
+[ext_resource type="Script" path="res://Slotmachine/Scripts/slotmachine.gd" id="2_jgvwv"]
+[ext_resource type="Texture2D" uid="uid://c6w70cxjplx6o" path="res://Slotmachine/Assets/button_start.png" id="3_7p3yh"]
+[ext_resource type="Texture2D" uid="uid://cwuuxoxtcxxss" path="res://Slotmachine/Assets/button_start_pressed.png" id="4_4p588"]
+[ext_resource type="Texture2D" uid="uid://bkiqscmno2sio" path="res://Slotmachine/Assets/button_stop.png" id="5_2kydh"]
+[ext_resource type="Texture2D" uid="uid://danegn33e5jq1" path="res://Slotmachine/Assets/button_stop_pressed.png" id="6_fqr5d"]
+
+[node name="Slotmachine" type="Sprite2D"]
+position = Vector2(540, 313)
+texture = ExtResource("1_tey2q")
+script = ExtResource("2_jgvwv")
+
+[node name="WheelCollection" parent="." instance=ExtResource("2_8m22j")]
+show_behind_parent = true
+position = Vector2(-42, -30)
+
+[node name="StartButton" type="TextureButton" parent="."]
+offset_left = -50.0
+offset_top = 15.0
+offset_right = -6.0
+offset_bottom = 59.0
+texture_normal = ExtResource("3_7p3yh")
+texture_pressed = ExtResource("4_4p588")
+texture_disabled = ExtResource("4_4p588")
+
+[node name="StopButton" type="TextureButton" parent="."]
+offset_left = 11.0
+offset_top = 15.0
+offset_right = 55.0
+offset_bottom = 59.0
+disabled = true
+texture_normal = ExtResource("5_2kydh")
+texture_pressed = ExtResource("6_fqr5d")
+texture_disabled = ExtResource("6_fqr5d")
+
+[node name="StartDelay" type="Timer" parent="."]
+one_shot = true
+
+[node name="StopDelay" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -78.0
+offset_right = 30.0
+offset_bottom = -52.0
+
+[connection signal="on_won" from="WheelCollection" to="." method="_on_wheel_collection_on_won"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="timeout" from="StartDelay" to="." method="_on_start_delay_timeout"]
+[connection signal="timeout" from="StopDelay" to="." method="_on_stop_delay_timeout"]
