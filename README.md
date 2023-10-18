@@ -12,7 +12,7 @@ _(This section is in progress. I will add the missing materials ASAP)_
 
 ## Contribution
 I won't merge any pull requests unless things are broken. <br>
-I will consider pull requests that adjust the code after a major godot version update breaks functionallity.
+I will consider pull requests that adjust the code after a major godot version update breaks functionality.
 
 ## Questions
 If you have questions regarding this project, reach out to me on Discord @flakysalt
