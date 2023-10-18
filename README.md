@@ -14,5 +14,9 @@ _(This section is in progress. I will add the missing materials ASAP)_
 I won't merge any pull requests unless things are broken. <br>
 I will consider pull requests that adjust the code after a major godot version update breaks functionality.
 
+## Git to Mercurial
+Since most of you will touch Mercurial before git, check out this extension to convert this git repo into Mercurial. <br>
+https://wiki.mercurial-scm.org/ConvertExtension
+
 ## Questions
 If you have questions regarding this project, reach out to me on Discord @flakysalt
