@@ -4,3 +4,6 @@ Thanks a lot
 
 Slotmachine
 Icons : https://cainos.itch.io/pixel-art-icon-pack-rpg
+
+Arcade
+Shader: https://godotshaders.com/shader/vhs-and-crt-monitor-effect/

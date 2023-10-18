@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg34ap3mcnvgh"]
+
+[ext_resource type="Texture2D" uid="uid://cqicingyy0g10" path="res://Arcade/Assets/SlotmachineBackground.jpg" id="1_0p6pv"]
+[ext_resource type="PackedScene" uid="uid://d2i2kqm6gyuqt" path="res://Arcade/Scenes/start_game_button.tscn" id="2_rjaau"]
+[ext_resource type="PackedScene" uid="uid://ssafe378feec" path="res://Arcade/Scenes/next_game_button.tscn" id="3_rkxpo"]
+[ext_resource type="Shader" path="res://Arcade/Assets/edge.gdshader" id="4_v0kwf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kyy5"]
+shader = ExtResource("4_v0kwf")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.085
+shader_parameter/scanlines_width = 0.01
+shader_parameter/grille_opacity = 0.215
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 8.434
+shader_parameter/roll_variation = 0.582
+shader_parameter/distort_intensity = 0.019
+shader_parameter/noise_opacity = 0.218
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.126
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.545
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="arcade_machine" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+top_level = true
+visibility_layer = 16385
+material = SubResource("ShaderMaterial_4kyy5")
+offset_right = 1150.0
+offset_bottom = 638.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(582, 269)
+scale = Vector2(0.757282, 0.757282)
+texture = ExtResource("1_0p6pv")
+
+[node name="start_game" parent="." instance=ExtResource("2_rjaau")]
+offset_left = 547.0
+offset_top = 546.0
+offset_right = 594.0
+offset_bottom = 590.0
+scene_path = "res://Slotmachine/Scenes/Slotmachine.tscn"
+
+[node name="next_game_button" parent="." instance=ExtResource("3_rkxpo")]
+offset_left = 1082.0
+offset_top = 318.0
+offset_right = 1126.0
+offset_bottom = 362.0
+disabled = true
+
+[node name="next_game_button2" parent="." instance=ExtResource("3_rkxpo")]
+offset_left = 35.0
+offset_top = 308.0
+offset_right = 79.0
+offset_bottom = 352.0
+disabled = true
+flip_h = true

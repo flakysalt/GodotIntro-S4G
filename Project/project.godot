@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Intro S4G"
-run/main_scene="res://Slotmachine/Scenes/Slotmachine.tscn"
+run/main_scene="res://Arcade/Scenes/arcade_machine.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
 [rendering]

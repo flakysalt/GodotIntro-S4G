@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ssafe378feec"]
+
+[ext_resource type="Texture2D" uid="uid://c6w70cxjplx6o" path="res://Slotmachine/Assets/button_start.png" id="1_mu4j1"]
+[ext_resource type="Texture2D" uid="uid://cwuuxoxtcxxss" path="res://Slotmachine/Assets/button_start_pressed.png" id="2_5oyek"]
+
+[node name="next_game_button" type="TextureButton"]
+texture_normal = ExtResource("1_mu4j1")
+texture_pressed = ExtResource("2_5oyek")
+texture_disabled = ExtResource("2_5oyek")

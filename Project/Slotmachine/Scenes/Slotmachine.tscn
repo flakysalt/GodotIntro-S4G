@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2pnd1hutxjrv"]
+[gd_scene load_steps=9 format=3 uid="uid://c2pnd1hutxjrv"]
 
 [ext_resource type="Texture2D" uid="uid://b2266c3dabj4d" path="res://Slotmachine/Assets/background.png" id="1_tey2q"]
 [ext_resource type="PackedScene" uid="uid://c2lms0i88p3ts" path="res://Slotmachine/Scenes/WheelCollection.tscn" id="2_8m22j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwuuxoxtcxxss" path="res://Slotmachine/Assets/button_start_pressed.png" id="4_4p588"]
 [ext_resource type="Texture2D" uid="uid://bkiqscmno2sio" path="res://Slotmachine/Assets/button_stop.png" id="5_2kydh"]
 [ext_resource type="Texture2D" uid="uid://danegn33e5jq1" path="res://Slotmachine/Assets/button_stop_pressed.png" id="6_fqr5d"]
+[ext_resource type="PackedScene" uid="uid://dq1lod500b5nc" path="res://Arcade/Scenes/back_button.tscn" id="8_wisus"]
 
 [node name="Slotmachine" type="Sprite2D"]
 position = Vector2(540, 313)
@@ -47,6 +48,12 @@ offset_left = -10.0
 offset_top = -78.0
 offset_right = 30.0
 offset_bottom = -52.0
+
+[node name="back_button" parent="." instance=ExtResource("8_wisus")]
+offset_left = -521.0
+offset_top = -304.0
+offset_right = -477.0
+offset_bottom = -260.0
 
 [connection signal="on_won" from="WheelCollection" to="." method="_on_wheel_collection_on_won"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

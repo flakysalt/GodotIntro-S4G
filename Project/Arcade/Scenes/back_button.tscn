@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq1lod500b5nc"]
+
+[ext_resource type="Script" path="res://Arcade/Scripts/load_scene.gd" id="1_fkhoe"]
+[ext_resource type="Texture2D" uid="uid://bkiqscmno2sio" path="res://Slotmachine/Assets/button_stop.png" id="1_sukh4"]
+[ext_resource type="Texture2D" uid="uid://danegn33e5jq1" path="res://Slotmachine/Assets/button_stop_pressed.png" id="2_q73p8"]
+
+[node name="back_button" type="TextureButton"]
+modulate = Color(0.843137, 0.152941, 0.0745098, 1)
+texture_normal = ExtResource("1_sukh4")
+texture_pressed = ExtResource("2_q73p8")
+script = ExtResource("1_fkhoe")
+scene_path = "res://Arcade/Scenes/arcade_machine.tscn"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

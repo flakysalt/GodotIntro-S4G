@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2i2kqm6gyuqt"]
+
+[ext_resource type="Script" path="res://Arcade/Scripts/load_scene.gd" id="1_n4h7j"]
+
+[node name="start_game" type="Button"]
+text = "PLAY"
+script = ExtResource("1_n4h7j")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
