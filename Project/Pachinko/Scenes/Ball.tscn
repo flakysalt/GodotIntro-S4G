@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://co6faso0jvdd7"]
+
+[ext_resource type="Script" path="res://Pachinko/Scripts/ball.gd" id="1_2eucw"]
+[ext_resource type="Texture2D" uid="uid://byll11omfl8bl" path="res://Pachinko/Assets/ball.png" id="2_3ye3o"]
+[ext_resource type="Texture2D" uid="uid://npw81qolv4nx" path="res://Pachinko/Assets/light.png" id="3_hue5e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mmdap"]
+friction = 0.0
+bounce = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5wbc"]
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_mmdap")
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_2eucw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h5wbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3ye3o")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+range_layer_min = -3
+range_layer_max = 3
+shadow_enabled = true
+texture = ExtResource("3_hue5e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://ne81jo88w0ym"]
+
+[ext_resource type="Texture2D" uid="uid://byll11omfl8bl" path="res://Pachinko/Assets/ball.png" id="1_uyorn"]
+[ext_resource type="Script" path="res://Pachinko/Scripts/pointer.gd" id="2_6ncud"]
+[ext_resource type="PackedScene" uid="uid://co6faso0jvdd7" path="res://Pachinko/Scenes/Ball.tscn" id="3_46btr"]
+[ext_resource type="Texture2D" uid="uid://dlxktw8wno5hm" path="res://Pachinko/Assets/pointer.png" id="4_yf8j8"]
+[ext_resource type="Texture2D" uid="uid://s410kuh1y2f4" path="res://Pachinko/Assets/trajectory.png" id="5_yf1fn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sbgpn"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iollw"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_gri3b"]
+_data = [Vector2(0, 1), 0.0, -0.412524, 0, 0, Vector2(1, 0.578947), -1.52158, 0.0, 0, 0]
+point_count = 2
+
+[node name="Pointer" type="Sprite2D"]
+z_index = 4
+material = SubResource("CanvasItemMaterial_sbgpn")
+position = Vector2(321, 127)
+texture = ExtResource("1_uyorn")
+script = ExtResource("2_6ncud")
+ballTemplate = ExtResource("3_46btr")
+initialVelocity = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_iollw")
+scale = Vector2(3, 3)
+texture = ExtResource("4_yf8j8")
+
+[node name="Line2D" type="Line2D" parent="."]
+use_parent_material = true
+width = 50.0
+width_curve = SubResource("Curve_gri3b")
+texture = ExtResource("5_yf1fn")
+texture_mode = 1

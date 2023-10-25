@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkx2j10k8v432"]
+
+[ext_resource type="Script" path="res://Pachinko/Scripts/point_pin.gd" id="1_x1ruf"]
+[ext_resource type="Texture2D" uid="uid://byll11omfl8bl" path="res://Pachinko/Assets/ball.png" id="2_pikuh"]
+[ext_resource type="OccluderPolygon2D" uid="uid://c8cgpuxtn7c4e" path="res://Pachinko/Assets/light_occluder_shape.tres" id="3_keuot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tmwav"]
+
+[node name="PointPin" type="StaticBody2D"]
+modulate = Color(0.00392157, 0, 0.764706, 1)
+script = ExtResource("1_x1ruf")
+hitColor = Color(0.247059, 0.466667, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tmwav")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pikuh")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = ExtResource("3_keuot")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

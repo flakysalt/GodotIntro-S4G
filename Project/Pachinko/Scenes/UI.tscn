@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cel1hqkanwwal"]
+
+[ext_resource type="PackedScene" uid="uid://dq1lod500b5nc" path="res://Arcade/Scenes/back_button.tscn" id="1_ljg3h"]
+[ext_resource type="Script" path="res://Pachinko/Scripts/ui.gd" id="1_wsmd7"]
+[ext_resource type="Texture2D" uid="uid://byll11omfl8bl" path="res://Pachinko/Assets/ball.png" id="3_56aau"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wsmd7")
+
+[node name="back_button" parent="." instance=ExtResource("1_ljg3h")]
+layout_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 1036.0
+offset_top = 23.0
+offset_right = 1127.0
+offset_bottom = 85.0
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Score: 0"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_56aau")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Balls: 0"

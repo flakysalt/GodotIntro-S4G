@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ne81jo88w0ym"]
+
+[ext_resource type="Texture2D" uid="uid://dlxktw8wno5hm" path="res://Pachinko/Assets/Pointer.png" id="1_ibrn1"]
+[ext_resource type="Script" path="res://Pachinko/Scripts/Pointer.gd" id="2_hy21m"]
+[ext_resource type="PackedScene" uid="uid://co6faso0jvdd7" path="res://Pachinko/Scenes/Ball.tscn" id="3_46btr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iollw"]
+light_mode = 1
+
+[node name="Pointer" type="Node2D"]
+z_index = 4
+position = Vector2(321, 127)
+script = ExtResource("2_hy21m")
+ballTemplate = ExtResource("3_46btr")
+initialVelocity = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_iollw")
+scale = Vector2(3, 3)
+texture = ExtResource("1_ibrn1")
+
+[node name="Line2D" type="Line2D" parent="."]

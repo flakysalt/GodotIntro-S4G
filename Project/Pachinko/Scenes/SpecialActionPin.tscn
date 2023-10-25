@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ky8h08uxwyil"]
+
+[ext_resource type="Script" path="res://Pachinko/Scripts/special_action_pin.gd" id="1_k7qtd"]
+[ext_resource type="Texture2D" uid="uid://byll11omfl8bl" path="res://Pachinko/Assets/ball.png" id="2_48inb"]
+[ext_resource type="Texture2D" uid="uid://npw81qolv4nx" path="res://Pachinko/Assets/light.png" id="3_qjaoo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jp708"]
+
+[node name="SpecialActionPin" type="StaticBody2D"]
+modulate = Color(0.447059, 0.396078, 0, 1)
+script = ExtResource("1_k7qtd")
+hitColor = Color(0.917647, 0.815686, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jp708")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_48inb")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+range_layer_min = -3
+range_layer_max = 3
+texture = ExtResource("3_qjaoo")
+texture_scale = 0.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

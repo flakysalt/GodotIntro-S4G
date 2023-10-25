@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://df1fs3xk6i768"]
+
+[ext_resource type="Script" path="res://Pachinko/Scripts/pachinko_game.gd" id="1_rk817"]
+[ext_resource type="PackedScene" uid="uid://ne81jo88w0ym" path="res://Pachinko/Scenes/Pointer.tscn" id="2_pp11s"]
+[ext_resource type="PackedScene" uid="uid://w6tx7dsqutn5" path="res://Pachinko/Scenes/BasePin.tscn" id="3_cekkp"]
+[ext_resource type="Texture2D" uid="uid://dg00j5v15jtmc" path="res://Pachinko/Assets/background.png" id="4_bju4o"]
+[ext_resource type="PackedScene" uid="uid://dkx2j10k8v432" path="res://Pachinko/Scenes/PointPin.tscn" id="4_vayxu"]
+[ext_resource type="PackedScene" uid="uid://cel1hqkanwwal" path="res://Pachinko/Scenes/UI.tscn" id="6_0swqf"]
+[ext_resource type="PackedScene" uid="uid://ky8h08uxwyil" path="res://Pachinko/Scenes/SpecialActionPin.tscn" id="6_7ia57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klk6s"]
+size = Vector2(386, 665)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6c8v"]
+size = Vector2(1154, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ag24p"]
+size = Vector2(1591, 103)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_rk817")
+max_attempts = 10
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+z_as_relative = false
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(573, 325)
+scale = Vector2(0.618456, 0.618456)
+texture = ExtResource("4_bju4o")
+
+[node name="Pointer" parent="." instance=ExtResource("2_pp11s")]
+position = Vector2(571, 75)
+initialVelocity = 800.0
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="LeftWall" type="StaticBody2D" parent="Level"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/LeftWall"]
+position = Vector2(-194, 322.5)
+shape = SubResource("RectangleShape2D_klk6s")
+
+[node name="RightWall" type="StaticBody2D" parent="Level"]
+position = Vector2(1542, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/RightWall"]
+position = Vector2(-194, 322.5)
+shape = SubResource("RectangleShape2D_klk6s")
+
+[node name="TopWall" type="StaticBody2D" parent="Level"]
+position = Vector2(12, -27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TopWall"]
+position = Vector2(567, 0)
+shape = SubResource("RectangleShape2D_p6c8v")
+
+[node name="BottomArea" type="Area2D" parent="Level"]
+position = Vector2(-105, 698)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/BottomArea"]
+position = Vector2(704.5, 41.5)
+shape = SubResource("RectangleShape2D_ag24p")
+
+[node name="Pins" type="Node2D" parent="."]
+
+[node name="PointPins" type="Node2D" parent="Pins"]
+
+[node name="PointPin" parent="Pins/PointPins" instance=ExtResource("4_vayxu")]
+position = Vector2(706, 300)
+
+[node name="PointPin2" parent="Pins/PointPins" instance=ExtResource("4_vayxu")]
+position = Vector2(913, 300)
+
+[node name="PointPin3" parent="Pins/PointPins" instance=ExtResource("4_vayxu")]
+position = Vector2(602, 288)
+
+[node name="BasePin" parent="Pins" instance=ExtResource("3_cekkp")]
+position = Vector2(262, 270)
+
+[node name="SpecialActionPin" parent="Pins" instance=ExtResource("6_7ia57")]
+position = Vector2(427, 272)
+
+[node name="UICanvas" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="UICanvas" instance=ExtResource("6_0swqf")]
+light_mask = 2
+visibility_layer = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_as_relative = false
+color = Color(0, 0, 0, 1)
+
+[connection signal="on_shot" from="Pointer" to="." method="_on_pointer_shot"]
+[connection signal="body_entered" from="Level/BottomArea" to="." method="_on_bottom_area_body_entered"]
+[connection signal="point_pin_hit" from="Pins/PointPins/PointPin" to="." method="_on_point_pin_hit"]
+[connection signal="point_pin_hit" from="Pins/PointPins/PointPin2" to="." method="_on_point_pin_hit"]
+[connection signal="point_pin_hit" from="Pins/PointPins/PointPin3" to="." method="_on_point_pin_hit"]
+[connection signal="special_pin_hit" from="Pins/SpecialActionPin" to="." method="_on_special_action_pin_hit"]
