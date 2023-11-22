@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3panpvwh7pns"]
+
+[ext_resource type="Script" path="res://DungeonCrawler/Scripts/HealthPotion.gd" id="1_o5dkj"]
+[ext_resource type="Texture2D" uid="uid://mliylldje5s4" path="res://DungeonCrawler/Assets/tilemap_packed.png" id="1_vanu5"]
+
+[sub_resource type="Gradient" id="Gradient_6ijow"]
+offsets = PackedFloat32Array(0.003125, 0.496875, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.215686, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_wpcws"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.752137, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -11.4201, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_rqxvc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.721875)
+colors = PackedColorArray(0.909804, 0.270588, 0.215686, 1, 1, 0.439216, 0.427451, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dh00t"]
+
+[node name="potion" type="Node2D"]
+script = ExtResource("1_o5dkj")
+
+[node name="Glow" type="CPUParticles2D" parent="."]
+lifetime = 3.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 0)
+scale_amount_min = 12.0
+scale_amount_max = 15.0
+color = Color(1, 0.854902, 0.541176, 1)
+color_ramp = SubResource("Gradient_6ijow")
+
+[node name="Bubbles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -8)
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_wpcws")
+color_initial_ramp = SubResource("Gradient_rqxvc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_vanu5")
+hframes = 12
+vframes = 11
+frame = 115
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_dh00t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

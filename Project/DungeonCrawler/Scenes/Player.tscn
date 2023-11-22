@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn7k7tjvhciw7"]
+
+[ext_resource type="Texture2D" uid="uid://mliylldje5s4" path="res://DungeonCrawler/Assets/tilemap_packed.png" id="1_45trn"]
+[ext_resource type="Script" path="res://DungeonCrawler/Scripts/Player.gd" id="1_renam"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6l0ip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_timv6"]
+size = Vector2(8, 15)
+
+[sub_resource type="Curve" id="Curve_t8g4r"]
+_data = [Vector2(0.0275482, 0.0210526), 0.0, 0.0, 0, 0, Vector2(0.939394, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_renam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6l0ip")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_45trn")
+hframes = 12
+vframes = 11
+frame = 97
+
+[node name="Sword" type="Node2D" parent="."]
+
+[node name="SwordArea" type="Area2D" parent="Sword"]
+position = Vector2(19, 0)
+rotation = 1.5708
+
+[node name="SwordSprite" type="Sprite2D" parent="Sword/SwordArea"]
+texture = ExtResource("1_45trn")
+hframes = 12
+vframes = 11
+frame = 107
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/SwordArea"]
+shape = SubResource("RectangleShape2D_timv6")
+
+[node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
+width_curve = SubResource("Curve_t8g4r")
+
+[connection signal="area_entered" from="Sword/SwordArea" to="." method="_on_sword_area_area_entered"]
+[connection signal="body_entered" from="Sword/SwordArea" to="." method="_on_sword_area_body_entered"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://o11c7qq56jxf"]
+
+[ext_resource type="Script" path="res://DungeonCrawler/Scripts/EnemySpawner.gd" id="1_pr3vb"]
+[ext_resource type="PackedScene" uid="uid://bh63us2xgvj8m" path="res://DungeonCrawler/Scenes/CrabEnemy.tscn" id="2_wtivd"]
+[ext_resource type="Texture2D" uid="uid://mliylldje5s4" path="res://DungeonCrawler/Assets/tilemap_packed.png" id="3_ntch1"]
+[ext_resource type="PackedScene" uid="uid://52xsuala56gy" path="res://DungeonCrawler/Scenes/GhostEnemy.tscn" id="3_rduc8"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_pr3vb")
+enemies = Array[PackedScene]([ExtResource("2_wtivd"), ExtResource("3_rduc8")])
+spawnTimer = Vector2(5, 15)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ntch1")
+hframes = 12
+vframes = 11
+frame = 55
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

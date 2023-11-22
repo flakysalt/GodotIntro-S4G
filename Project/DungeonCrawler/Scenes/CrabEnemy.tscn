@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh63us2xgvj8m"]
+
+[ext_resource type="Script" path="res://DungeonCrawler/Scripts/CrabEnemy.gd" id="1_bbnbb"]
+[ext_resource type="Texture2D" uid="uid://mliylldje5s4" path="res://DungeonCrawler/Assets/tilemap_packed.png" id="2_803i8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ffej"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sy86p"]
+
+[node name="CrabEnemy" type="CharacterBody2D"]
+script = ExtResource("1_bbnbb")
+speed = 15.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_803i8")
+hframes = 12
+vframes = 11
+frame = 110
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ffej")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sy86p")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

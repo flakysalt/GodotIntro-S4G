@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://52xsuala56gy"]
+
+[ext_resource type="Script" path="res://DungeonCrawler/Scripts/GhostEnemy.gd" id="1_saow6"]
+[ext_resource type="PackedScene" uid="uid://byd62goq2gomy" path="res://DungeonCrawler/Scenes/Projectile.tscn" id="2_buqqx"]
+[ext_resource type="Texture2D" uid="uid://mliylldje5s4" path="res://DungeonCrawler/Assets/tilemap_packed.png" id="3_txycy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pcxnf"]
+
+[node name="GhostEnemy" type="Area2D"]
+script = ExtResource("1_saow6")
+speed = 50.0
+projectile = ExtResource("2_buqqx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pcxnf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_txycy")
+hframes = 12
+vframes = 11
+frame = 121
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

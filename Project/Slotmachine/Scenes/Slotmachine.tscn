@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dq1lod500b5nc" path="res://Arcade/Scenes/back_button.tscn" id="8_wisus"]
 
 [node name="Slotmachine" type="Sprite2D"]
-position = Vector2(540, 313)
+position = Vector2(540, 314)
 texture = ExtResource("1_tey2q")
 script = ExtResource("2_jgvwv")
 
