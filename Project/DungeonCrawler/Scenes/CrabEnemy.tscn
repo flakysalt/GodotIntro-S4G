@@ -9,7 +9,8 @@
 
 [node name="CrabEnemy" type="CharacterBody2D"]
 script = ExtResource("1_bbnbb")
-speed = 15.0
+speed = 20.0
+accel = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_803i8")

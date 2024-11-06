@@ -14,8 +14,7 @@ func _process(delta):
 func _on_timer_timeout():
 	var newProjectile = projectile.instantiate()
 	newProjectile.global_position = global_position
-	var direction = (player.global_position - global_position).normalized()
-	newProjectile.look_at(direction)
+	newProjectile.look_at(player.global_position)
 	get_tree().get_root().add_child(newProjectile)
 	
 func hit():
